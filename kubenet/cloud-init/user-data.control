@@ -1,0 +1,18 @@
+#cloud-config
+password: ubuntu
+ssh_authorized_keys:
+  - $(<~/.ssh/id_rsa.pub)
+packages:
+  - curl
+write_files:
+  - path: /etc/sysctl.d/50-vip-arp.conf
+    content: |
+      net.ipv4.conf.all.arp_announce = 2
+      net.ipv4.conf.all.arp_ignore = 1
+  - path: /etc/modules-load.d/cloud-init.conf
+    content: |
+      br_netfilter
+runcmd:
+  - sysctl -p /etc/sysctl.d/50-vip-arp.conf
+  - modprobe br_netfilter
+  

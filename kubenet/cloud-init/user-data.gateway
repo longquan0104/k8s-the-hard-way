@@ -1,0 +1,12 @@
+#cloud-config
+password: ubuntu
+ssh_authorized_keys:
+  - $(<~/.ssh/id_rsa.pub)
+packages:
+  - curl
+  - ipvsadm
+  - ldirectord
+ca_certs:
+  trusted:
+    - |
+      $(sed "s/^/      /g" "$dir/auth/ca.pem")

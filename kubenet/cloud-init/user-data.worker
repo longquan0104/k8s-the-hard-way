@@ -1,0 +1,13 @@
+#cloud-config
+password: ubuntu
+ssh_authorized_keys:
+  - $(<~/.ssh/id_rsa.pub)
+packages:
+  - curl
+  - nfs-common
+write_files:
+  - path: /etc/modules-load.d/cloud-init.conf
+    content: |
+      br_netfilter
+runcmd:
+  - modprobe br_netfilter

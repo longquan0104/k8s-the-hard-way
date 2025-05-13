@@ -1,0 +1,6 @@
+#cloud-config
+password: ubuntu
+ssh_authorized_keys:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHfAZKn/quBgJbOgUsVXjBvVql+KDliaW8RMxaw2MYqR longquan0104@MacBook-Pro-cua-Nguyen.local
+packages:
+  - curl
